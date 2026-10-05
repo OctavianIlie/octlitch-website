@@ -1083,3 +1083,13 @@ footer {
     color: var(--mint);
     text-decoration: underline;
 }
+.release-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    margin-top: 55px;
+    padding-top: 28px;
+
+    border-top: 1px solid var(--border);
+}

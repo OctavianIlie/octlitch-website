@@ -51,7 +51,27 @@ const { post } = Astro.props;
                     ))
                 }
             </div>
+		            {
+                post.slug === "octlitch-1-0-alpha-1-released" && (
+                    <div class="release-links">
+                        <a
+                            class="button primary"
+                            href="/download/"
+                        >
+                            Download Alpha 1
+                        </a>
 
+                        <a
+                            class="button"
+                            href="https://github.com/OctavianIlie/octlitch/releases/tag/v1.0-alpha1"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            GitHub Release
+                        </a>
+                    </div>
+                )
+            }
             <div class="news-article-footer">
                 <a href="/news/">
                     ← Back to all news
