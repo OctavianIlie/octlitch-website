@@ -1,4 +1,57 @@
 export const newsPosts = [
+{
+    slug: "octlitch-1-0-alpha-1-released",
+    title: "Octlitch 1.0 Alpha 1 is here",
+    date: "October 6, 2026",
+    summary:
+        "The first public Octlitch release is now available to download, test and install.",
+    content: [
+        {
+            heading: "The first public release",
+            paragraphs: [
+                "Octlitch 1.0 Alpha 1 is now available as the project's first public installation image.",
+                "This release marks the point where the live environment, installer, KDE Plasma desktop, package management and documentation are all working together as a complete Octlitch system.",
+            ],
+        },
+        {
+            heading: "What is included",
+            paragraphs: [
+                "Octlitch is built on Fedora with KDE Plasma and keeps the underlying Fedora system accessible instead of hiding it behind a custom package layer.",
+                "The release includes the Octlitch desktop configuration, four curated themes, LibreWolf, KDE Discover, Flatpak and Flathub.",
+                "System packages are managed with DNF, while Discover is focused on Flatpak desktop applications.",
+            ],
+        },
+        {
+            heading: "Hardware and gaming",
+            paragraphs: [
+                "AMD and Intel graphics use the drivers provided by the Fedora kernel and Mesa stack.",
+                "Proprietary NVIDIA drivers are not bundled into the ISO. Octlitch instead provides a post-install helper for users who choose to install them.",
+                "Steam can be installed from Flathub, while Steam itself manages Proton and its compatibility tools.",
+            ],
+        },
+        {
+            heading: "Documentation",
+            paragraphs: [
+                "The Octlitch Handbook is available on the website and covers installation, package management, graphics hardware, Steam, Proton and troubleshooting.",
+                "The documentation will continue to grow as Octlitch develops.",
+            ],
+        },
+        {
+            heading: "Download Alpha 1",
+            paragraphs: [
+                "Octlitch 1.0 Alpha 1 is available from the official Octlitch download page together with its SHA256 checksum.",
+                "This is an alpha release and is intended for testing and feedback. Back up important data before installing it on physical hardware.",
+            ],
+        },
+        {
+            heading: "Thank you for testing Octlitch",
+            paragraphs: [
+                "If you find an Octlitch-specific problem, please report it through the project's GitHub issue tracker.",
+                "Feedback from Alpha 1 will help shape the next Octlitch release.",
+            ],
+        },
+    ],
+},
     {
         slug: "building-toward-alpha-1",
         title: "Building toward Octlitch 1.0 Alpha 1",
