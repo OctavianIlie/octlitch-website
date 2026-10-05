@@ -1,0 +1,441 @@
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Common problems">
+    <h1>Common problems</h1>
+
+    <p class="docs-lead">
+        Basic diagnostic steps for common Octlitch desktop, networking,
+        package-management and hardware problems.
+    </p>
+
+    <div class="docs-note">
+        <strong>Before troubleshooting</strong>
+
+        <p>
+            Install available system updates first unless an update itself
+            appears to have caused the problem.
+        </p>
+    </div>
+
+    <pre><code>sudo dnf upgrade --refresh</code></pre>
+
+    <h2>Collect basic system information</h2>
+
+    <p>
+        When reporting a problem, it is useful to include information about
+        the system, kernel and desktop environment.
+    </p>
+
+    <pre><code>cat /etc/os-release</code></pre>
+
+    <pre><code>uname -r</code></pre>
+
+    <pre><code>fastfetch</code></pre>
+
+    <p>
+        Hardware information can be inspected with:
+    </p>
+
+    <pre><code>lspci -k</code></pre>
+
+    <h2>The system does not reach the desktop</h2>
+
+    <p>
+        If Octlitch stops during boot or remains on the splash screen,
+        switch to a text console with:
+    </p>
+
+    <pre><code>Ctrl + Alt + F3</code></pre>
+
+    <p>
+        Check for failed system services:
+    </p>
+
+    <pre><code>systemctl --failed</code></pre>
+
+    <p>
+        Check the login manager:
+    </p>
+
+    <pre><code>systemctl status plasmalogin --no-pager -l</code></pre>
+
+    <p>
+        Inspect errors from the current boot:
+    </p>
+
+    <pre><code>journalctl -b -p err</code></pre>
+
+    <p>
+        To inspect the Plasma login manager specifically:
+    </p>
+
+    <pre><code>journalctl -b -u plasmalogin --no-pager</code></pre>
+
+    <h3>Check Plasma package versions</h3>
+
+    <p>
+        A partially updated Plasma stack can prevent the graphical session
+        from starting.
+    </p>
+
+    <pre><code>rpm -q \
+kwin \
+kwin-common \
+kwin-libs \
+kscreenlocker \
+plasma-workspace \
+plasma-workspace-libs \
+plasma-login-manager \
+libplasma</code></pre>
+
+    <p>
+        Important Plasma components should belong to the same update level.
+        If they do not, synchronize the installed Fedora packages:
+    </p>
+
+    <pre><code>sudo dnf distro-sync --refresh</code></pre>
+
+    <p>
+        Restart afterward:
+    </p>
+
+    <pre><code>sudo reboot</code></pre>
+
+    <h2>Discover is stuck on “Fetching updates”</h2>
+
+    <p>
+        Octlitch uses Flathub as its Flatpak application source.
+    </p>
+
+    <p>
+        Check configured Flatpak remotes:
+    </p>
+
+    <pre><code>flatpak remotes --show-details</code></pre>
+
+    <p>
+        A normal Octlitch installation should use Flathub. If an old Fedora
+        OCI Flatpak remote is present and Discover hangs while refreshing it,
+        disable that remote:
+    </p>
+
+    <pre><code>sudo flatpak remote-modify --system --disable fedora</code></pre>
+
+    <p>
+        If everything works correctly afterward, the unused remote can be
+        removed:
+    </p>
+
+    <pre><code>sudo flatpak remote-delete --system fedora</code></pre>
+
+    <p>
+        Restart Discover:
+    </p>
+
+    <pre><code>killall plasma-discover 2>/dev/null || true
+plasma-discover</code></pre>
+
+    <h2>Flathub is missing</h2>
+
+    <p>
+        Check available remotes:
+    </p>
+
+    <pre><code>flatpak remotes</code></pre>
+
+    <p>
+        Add Flathub for the current user if it is missing:
+    </p>
+
+    <pre><code>flatpak remote-add --user --if-not-exists \
+flathub \
+https://flathub.org/repo/flathub.flatpakrepo</code></pre>
+
+    <h2>Flatpak applications will not update</h2>
+
+    <p>
+        Refresh and update installed Flatpak applications:
+    </p>
+
+    <pre><code>flatpak update</code></pre>
+
+    <p>
+        Remove unused runtimes afterward if required:
+    </p>
+
+    <pre><code>flatpak uninstall --unused</code></pre>
+
+    <p>
+        Show detailed remote information:
+    </p>
+
+    <pre><code>flatpak remotes --show-details</code></pre>
+
+    <h2>DNF cannot download packages</h2>
+
+    <p>
+        First check basic network connectivity:
+    </p>
+
+    <pre><code>ping -c 3 fedoraproject.org</code></pre>
+
+    <p>
+        Check DNS resolution:
+    </p>
+
+    <pre><code>getent hosts fedoraproject.org</code></pre>
+
+    <p>
+        Check enabled repositories:
+    </p>
+
+    <pre><code>dnf repolist</code></pre>
+
+    <p>
+        Clear cached repository metadata and try again:
+    </p>
+
+    <pre><code>sudo dnf clean all
+sudo dnf --refresh makecache</code></pre>
+
+    <h2>Networking is not working</h2>
+
+    <p>
+        Check NetworkManager:
+    </p>
+
+    <pre><code>systemctl status NetworkManager --no-pager</code></pre>
+
+    <p>
+        Show detected network devices:
+    </p>
+
+    <pre><code>nmcli device status</code></pre>
+
+    <p>
+        Show active connections:
+    </p>
+
+    <pre><code>nmcli connection show --active</code></pre>
+
+    <p>
+        Restart NetworkManager if necessary:
+    </p>
+
+    <pre><code>sudo systemctl restart NetworkManager</code></pre>
+
+    <h2>DNS is not working</h2>
+
+    <p>
+        Check whether names can be resolved:
+    </p>
+
+    <pre><code>getent hosts fedoraproject.org</code></pre>
+
+    <p>
+        Check the resolver configuration:
+    </p>
+
+    <pre><code>ls -l /etc/resolv.conf
+cat /etc/resolv.conf</code></pre>
+
+    <p>
+        If the system uses systemd-resolved, inspect its state:
+    </p>
+
+    <pre><code>resolvectl status</code></pre>
+
+    <h2>Graphics problems</h2>
+
+    <p>
+        Identify the detected graphics hardware and active kernel drivers:
+    </p>
+
+    <pre><code>lspci -k | grep -EA3 'VGA|3D|Display'</code></pre>
+
+    <p>
+        Check graphics-related kernel messages:
+    </p>
+
+    <pre><code>journalctl -b -k | grep -Ei 'drm|gpu|amdgpu|i915|xe|nvidia'</code></pre>
+
+    <p>
+        Check the current display session:
+    </p>
+
+    <pre><code>echo $XDG_SESSION_TYPE</code></pre>
+
+    <p>
+        On a normal Octlitch Plasma session this should usually report:
+    </p>
+
+    <pre><code>wayland</code></pre>
+
+    <h2>NVIDIA driver problems</h2>
+
+    <p>
+        Verify that the NVIDIA packages are installed:
+    </p>
+
+    <pre><code>rpm -qa | grep -i nvidia</code></pre>
+
+    <p>
+        Check whether the kernel module is loaded:
+    </p>
+
+    <pre><code>lsmod | grep nvidia</code></pre>
+
+    <p>
+        Check NVIDIA status:
+    </p>
+
+    <pre><code>nvidia-smi</code></pre>
+
+    <p>
+        Check Secure Boot:
+    </p>
+
+    <pre><code>mokutil --sb-state</code></pre>
+
+    <p>
+        Rebuild the NVIDIA kernel module if necessary:
+    </p>
+
+    <pre><code>sudo akmods --force</code></pre>
+
+    <p>
+        See the dedicated NVIDIA chapter before making more extensive driver
+        changes.
+    </p>
+
+    <h2>Audio is not working</h2>
+
+    <p>
+        Check the PipeWire user services:
+    </p>
+
+    <pre><code>systemctl --user status pipewire pipewire-pulse wireplumber</code></pre>
+
+    <p>
+        Restart the audio services:
+    </p>
+
+    <pre><code>systemctl --user restart pipewire pipewire-pulse wireplumber</code></pre>
+
+    <p>
+        Available audio devices can also be inspected with:
+    </p>
+
+    <pre><code>wpctl status</code></pre>
+
+    <h2>Bluetooth problems</h2>
+
+    <p>
+        Check the Bluetooth service:
+    </p>
+
+    <pre><code>systemctl status bluetooth --no-pager</code></pre>
+
+    <p>
+        Restart it if necessary:
+    </p>
+
+    <pre><code>sudo systemctl restart bluetooth</code></pre>
+
+    <p>
+        Check detected Bluetooth devices:
+    </p>
+
+    <pre><code>bluetoothctl list</code></pre>
+
+    <h2>A Plasma setting is behaving incorrectly</h2>
+
+    <p>
+        Log out and sign in again first. This restarts the Plasma session
+        without rebooting the entire machine.
+    </p>
+
+    <p>
+        For more detailed diagnostics, inspect user-session errors:
+    </p>
+
+    <pre><code>journalctl --user -b -p err</code></pre>
+
+    <p>
+        Plasma-related processes can be inspected with:
+    </p>
+
+    <pre><code>ps aux | grep -E 'plasmashell|kwin_wayland|kded6'</code></pre>
+
+    <h2>Check disk space</h2>
+
+    <p>
+        Package installations and updates can fail when the root filesystem
+        is full.
+    </p>
+
+    <pre><code>df -h</code></pre>
+
+    <p>
+        Check Flatpak storage usage:
+    </p>
+
+    <pre><code>du -sh ~/.local/share/flatpak 2>/dev/null
+sudo du -sh /var/lib/flatpak 2>/dev/null</code></pre>
+
+    <h2>View system logs</h2>
+
+    <p>
+        Errors from the current boot:
+    </p>
+
+    <pre><code>journalctl -b -p err</code></pre>
+
+    <p>
+        Kernel messages:
+    </p>
+
+    <pre><code>journalctl -b -k</code></pre>
+
+    <p>
+        Follow new system messages in real time:
+    </p>
+
+    <pre><code>journalctl -f</code></pre>
+
+    <h2>Reporting an Octlitch problem</h2>
+
+    <p>
+        If the problem appears to be specific to Octlitch, report it through
+        the project's GitHub issue tracker.
+    </p>
+
+    <p>
+        Include the Octlitch release, relevant hardware information,
+        commands you ran, error messages and the steps needed to reproduce
+        the problem.
+    </p>
+
+    <p>
+        Do not include passwords, private keys, authentication tokens or
+        other secrets in logs or screenshots.
+    </p>
+
+    <p>
+        <a
+            href="https://github.com/OctavianIlie/octlitch/issues"
+            target="_blank"
+            rel="noreferrer"
+        >
+            Open the Octlitch issue tracker →
+        </a>
+    </p>
+
+    <div class="docs-next">
+        <a href="/documentation/">
+            Back to the handbook →
+        </a>
+    </div>
+</DocsLayout>

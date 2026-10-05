@@ -1,0 +1,133 @@
+---
+import DocsLayout from "../../../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Discover and Flatpak">
+    <h1>Discover and Flatpak</h1>
+
+    <p class="docs-lead">
+        Octlitch uses Flatpak and Flathub for many graphical desktop
+        applications.
+    </p>
+
+    <h2>KDE Discover</h2>
+
+    <p>
+        Discover provides a graphical way to browse, install, remove and
+        update Flatpak applications.
+    </p>
+
+    <p>
+        Open <strong>Discover</strong> from the application launcher and use
+        the search field to find software.
+    </p>
+
+    <div class="docs-note">
+        <strong>System packages are managed separately</strong>
+
+        <p>
+            Discover in Octlitch is intended for Flatpak applications.
+            Use DNF in the terminal when installing or updating system
+            packages.
+        </p>
+    </div>
+
+    <h2>Flathub</h2>
+
+    <p>
+        Flathub is the primary Flatpak application source used by Octlitch.
+    </p>
+
+    <p>
+        Check the configured Flatpak remotes with:
+    </p>
+
+    <pre><code>flatpak remotes</code></pre>
+
+    <p>
+        A normal Octlitch installation should include a Flathub remote.
+    </p>
+
+    <h2>Add Flathub manually</h2>
+
+    <p>
+        If Flathub is not configured, it can be added with:
+    </p>
+
+    <pre><code>flatpak remote-add --user --if-not-exists \
+flathub \
+https://flathub.org/repo/flathub.flatpakrepo</code></pre>
+
+    <h2>Search for applications</h2>
+
+    <pre><code>flatpak search application-name</code></pre>
+
+    <p>
+        Example:
+    </p>
+
+    <pre><code>flatpak search Krita</code></pre>
+
+    <h2>Install an application</h2>
+
+    <p>
+        Applications can be installed through Discover or directly from
+        the terminal.
+    </p>
+
+    <pre><code>flatpak install flathub application-id</code></pre>
+
+    <p>
+        Flatpak applications use identifiers such as:
+    </p>
+
+    <pre><code>org.kde.krita</code></pre>
+
+    <h2>List installed Flatpaks</h2>
+
+    <pre><code>flatpak list</code></pre>
+
+    <h2>Update Flatpak applications</h2>
+
+    <p>
+        Discover can check for application updates automatically.
+        You can also update everything from the terminal:
+    </p>
+
+    <pre><code>flatpak update</code></pre>
+
+    <h2>Remove an application</h2>
+
+    <pre><code>flatpak uninstall application-id</code></pre>
+
+    <h2>Remove unused runtimes</h2>
+
+    <p>
+        Flatpak applications can share large runtimes. When applications
+        are removed, unused runtimes may remain installed.
+    </p>
+
+    <p>
+        Clean them with:
+    </p>
+
+    <pre><code>flatpak uninstall --unused</code></pre>
+
+    <h2>Fedora Flatpaks</h2>
+
+    <p>
+        Octlitch does not use the Fedora OCI Flatpak remote by default.
+        Flathub is used instead for the graphical application catalogue.
+    </p>
+
+    <p>
+        This keeps the application source simple and avoids presenting
+        duplicate versions of the same software.
+    </p>
+
+    <div class="docs-next">
+        <a href="/documentation/hardware/nvidia/">
+            Next: NVIDIA graphics →
+        </a>
+    </div>
+</DocsLayout>

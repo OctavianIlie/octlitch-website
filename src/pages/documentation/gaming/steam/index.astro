@@ -1,0 +1,158 @@
+---
+import DocsLayout from "../../../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Steam">
+    <h1>Steam</h1>
+
+    <p class="docs-lead">
+        Steam can be installed on Octlitch through Flathub using KDE Discover
+        or the Flatpak command line.
+    </p>
+
+    <h2>Install Steam with Discover</h2>
+
+    <p>
+        Open <strong>Discover</strong> from the application launcher and search
+        for <strong>Steam</strong>.
+    </p>
+
+    <p>
+        Select the Flathub version and install it.
+    </p>
+
+    <h2>Install Steam from the terminal</h2>
+
+    <p>
+        Steam can also be installed directly from Flathub:
+    </p>
+
+    <pre><code>flatpak install flathub com.valvesoftware.Steam</code></pre>
+
+    <p>
+        Launch it with:
+    </p>
+
+    <pre><code>flatpak run com.valvesoftware.Steam</code></pre>
+
+    <h2>First launch</h2>
+
+    <p>
+        Steam may download additional files the first time it starts.
+        Sign in with your Steam account when prompted.
+    </p>
+
+    <p>
+        Your game library will appear normally once Steam has finished
+        updating.
+    </p>
+
+    <div class="docs-note">
+        <strong>Steam is not preinstalled</strong>
+
+        <p>
+            Octlitch keeps the base installation focused. Steam is available
+            through Flathub for users who want gaming support.
+        </p>
+    </div>
+
+    <h2>Game storage</h2>
+
+    <p>
+        Steam creates a default library inside its Flatpak environment.
+        Additional Steam library locations can also be configured from
+        Steam's storage settings.
+    </p>
+
+    <p>
+        If you use another drive for games, make sure the drive is mounted
+        before starting Steam.
+    </p>
+
+    <h2>Flatpak permissions</h2>
+
+    <p>
+        Flatpak applications run with sandbox permissions. Steam normally
+        receives the access required for standard game libraries and hardware
+        integration.
+    </p>
+
+    <p>
+        If you intentionally place a Steam library in a custom location and
+        Steam cannot access it, review the application's Flatpak permissions.
+    </p>
+
+    <p>
+        Current permissions can be inspected with:
+    </p>
+
+    <pre><code>flatpak info --show-permissions com.valvesoftware.Steam</code></pre>
+
+    <h2>Graphics drivers</h2>
+
+    <p>
+        Gaming performance depends on having the correct graphics drivers
+        installed.
+    </p>
+
+    <ul>
+        <li>
+            AMD and Intel graphics use the drivers included with Octlitch.
+        </li>
+
+        <li>
+            NVIDIA users should install the appropriate NVIDIA driver before
+            relying on the system for gaming.
+        </li>
+    </ul>
+
+    <p>
+        See the Hardware section of this handbook for graphics-driver
+        instructions.
+    </p>
+
+    <h2>Keep the system updated</h2>
+
+    <p>
+        Update Octlitch system packages with:
+    </p>
+
+    <pre><code>sudo dnf upgrade --refresh</code></pre>
+
+    <p>
+        Update Flatpak applications with:
+    </p>
+
+    <pre><code>flatpak update</code></pre>
+
+    <h2>Verify Steam installation</h2>
+
+    <p>
+        Check that Steam is installed:
+    </p>
+
+    <pre><code>flatpak list | grep -i steam</code></pre>
+
+    <p>
+        The application ID should be:
+    </p>
+
+    <pre><code>com.valvesoftware.Steam</code></pre>
+
+    <h2>Windows games</h2>
+
+    <p>
+        Steam can run many Windows games on Linux through Proton.
+    </p>
+
+    <p>
+        Proton is managed from inside Steam and does not need to be installed
+        as a separate Octlitch system package.
+    </p>
+
+    <div class="docs-next">
+        <a href="/documentation/gaming/proton/">
+            Next: Proton →
+        </a>
+    </div>
+</DocsLayout>

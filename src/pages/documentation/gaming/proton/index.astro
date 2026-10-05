@@ -1,0 +1,199 @@
+---
+import DocsLayout from "../../../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Proton">
+    <h1>Proton</h1>
+
+    <p class="docs-lead">
+        Proton is Valve's compatibility layer for running many Windows games
+        through Steam on Linux.
+    </p>
+
+    <h2>How Proton works</h2>
+
+    <p>
+        Proton combines technologies including Wine and DXVK with additional
+        compatibility work from Valve and the Linux gaming community.
+    </p>
+
+    <p>
+        Steam downloads and manages Proton versions automatically.
+    </p>
+
+    <div class="docs-note">
+        <strong>Octlitch does not preinstall Proton</strong>
+
+        <p>
+            Steam manages Proton itself. This avoids duplicating compatibility
+            tools in the base operating system.
+        </p>
+    </div>
+
+    <h2>Enable compatibility for Windows games</h2>
+
+    <p>
+        Open Steam settings and find the compatibility or Steam Play section.
+    </p>
+
+    <p>
+        Steam can use Proton automatically for supported titles. You can also
+        enable compatibility for additional Windows games when required.
+    </p>
+
+    <h2>Choose a Proton version for a game</h2>
+
+    <p>
+        To select a specific Proton version for one game:
+    </p>
+
+    <ol>
+        <li>Open your Steam library.</li>
+        <li>Right-click the game.</li>
+        <li>Open <strong>Properties</strong>.</li>
+        <li>Open the <strong>Compatibility</strong> section.</li>
+        <li>
+            Enable the option to force a specific Steam Play compatibility
+            tool.
+        </li>
+        <li>Select the Proton version you want to test.</li>
+    </ol>
+
+    <h2>Proton Experimental</h2>
+
+    <p>
+        Proton Experimental contains newer compatibility fixes than the
+        regular stable Proton releases.
+    </p>
+
+    <p>
+        It can be useful for recently released games or titles that require
+        newer fixes.
+    </p>
+
+    <p>
+        If a game works correctly with the default Proton version, there is
+        usually no reason to force Proton Experimental.
+    </p>
+
+    <h2>Native Linux games</h2>
+
+    <p>
+        Some Steam games provide a native Linux build.
+    </p>
+
+    <p>
+        Steam may use the native version by default instead of Proton.
+        Forcing Proton is optional and may sometimes help if the Windows build
+        works better than the native version.
+    </p>
+
+    <h2>Changing Proton versions</h2>
+
+    <p>
+        Different games may behave differently with different Proton releases.
+    </p>
+
+    <p>
+        If a game stops working after changing versions, return to its
+        Compatibility settings and try the previous version or the default
+        selected by Steam.
+    </p>
+
+    <h2>Game compatibility</h2>
+
+    <p>
+        Not every Windows game works perfectly under Proton.
+    </p>
+
+    <p>
+        Compatibility can depend on:
+    </p>
+
+    <ul>
+        <li>the game engine</li>
+        <li>graphics APIs</li>
+        <li>anti-cheat support</li>
+        <li>launchers and account systems</li>
+        <li>the selected Proton version</li>
+        <li>graphics drivers</li>
+    </ul>
+
+    <h2>Anti-cheat</h2>
+
+    <p>
+        Some multiplayer games use anti-cheat systems that may not support
+        Linux or Proton.
+    </p>
+
+    <p>
+        In those cases the game may fail to start or multiplayer functionality
+        may be unavailable even when the rest of the game would otherwise run.
+    </p>
+
+    <h2>Basic troubleshooting</h2>
+
+    <p>
+        If a game does not start, first try:
+    </p>
+
+    <ol>
+        <li>Restart Steam.</li>
+        <li>Check for Octlitch system updates.</li>
+        <li>Update Steam and Flatpak applications.</li>
+        <li>Verify the game's files in Steam.</li>
+        <li>Try another Proton version.</li>
+        <li>Check that your graphics driver is working correctly.</li>
+    </ol>
+
+    <p>
+        Update the system:
+    </p>
+
+    <pre><code>sudo dnf upgrade --refresh</code></pre>
+
+    <p>
+        Update Flatpak applications:
+    </p>
+
+    <pre><code>flatpak update</code></pre>
+
+    <h2>Proton logs</h2>
+
+    <p>
+        Advanced troubleshooting can use Proton's logging facility.
+    </p>
+
+    <p>
+        Add the following to the game's Steam launch options:
+    </p>
+
+    <pre><code>PROTON_LOG=1 %command%</code></pre>
+
+    <p>
+        Launch the game once. Proton will generate a log file in your home
+        directory using the game's Steam application ID.
+    </p>
+
+    <p>
+        Remove the launch option when you no longer need diagnostic logging.
+    </p>
+
+    <h2>Custom compatibility tools</h2>
+
+    <p>
+        Third-party Proton builds exist, but they are not part of the
+        standard Octlitch installation.
+    </p>
+
+    <p>
+        Start with the Proton versions supplied by Steam before adding custom
+        compatibility tools.
+    </p>
+
+    <div class="docs-next">
+        <a href="/documentation/troubleshooting/">
+            Next: Common problems →
+        </a>
+    </div>
+</DocsLayout>

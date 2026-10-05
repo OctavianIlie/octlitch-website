@@ -1,0 +1,95 @@
+---
+import DocsLayout from "../../../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="First boot">
+    <h1>First boot</h1>
+
+    <p class="docs-lead">
+        A few useful steps after starting your newly installed Octlitch system.
+    </p>
+
+    <h2>Update the system</h2>
+
+    <p>
+        Start by installing the latest Fedora package updates.
+    </p>
+
+    <pre><code>sudo dnf upgrade --refresh</code></pre>
+
+    <p>
+        Restart the system if the update includes important system
+        components such as the kernel, systemd or graphics libraries.
+    </p>
+
+    <h2>Install applications</h2>
+
+    <p>
+        Octlitch uses two primary application sources.
+    </p>
+
+    <ul>
+        <li>
+            <strong>DNF</strong> for operating system packages and system
+            components.
+        </li>
+
+        <li>
+            <strong>Flatpak and Flathub</strong> for many desktop applications.
+        </li>
+    </ul>
+
+    <p>
+        KDE Discover is included as the graphical application manager for
+        Flatpak applications.
+    </p>
+
+    <h2>Choose an Octlitch theme</h2>
+
+    <p>
+        Octlitch includes four curated desktop looks:
+    </p>
+
+    <ul>
+        <li>Valley</li>
+        <li>Model</li>
+        <li>Coast</li>
+        <li>Mountain</li>
+    </ul>
+
+    <p>
+        They can be selected from KDE Plasma's appearance settings.
+    </p>
+
+    <h2>NVIDIA graphics</h2>
+
+    <p>
+        Proprietary NVIDIA drivers are intentionally not included in the
+        installation image.
+    </p>
+
+    <p>
+        Octlitch provides a post-install helper for users who choose to
+        install the NVIDIA driver:
+    </p>
+
+    <pre><code>sudo octlitch-install-nvidia</code></pre>
+
+    <p>
+        See the NVIDIA chapter for details, including Secure Boot
+        considerations.
+    </p>
+
+    <h2>Need help?</h2>
+
+    <p>
+        Continue through the handbook for package management, hardware,
+        gaming and troubleshooting information.
+    </p>
+
+    <div class="docs-next">
+        <a href="/documentation/packages/dnf/">
+            Next: DNF package management →
+        </a>
+    </div>
+</DocsLayout>

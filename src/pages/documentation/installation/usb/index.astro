@@ -1,0 +1,96 @@
+---
+import DocsLayout from "../../../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Creating installation media">
+    <h1>Creating installation media</h1>
+
+    <p class="docs-lead">
+        Write the Octlitch ISO to a USB drive before booting the installer.
+    </p>
+
+    <h2>Before you begin</h2>
+
+    <p>
+        You will need an Octlitch ISO image and a USB drive with at least
+        8 GB of capacity.
+    </p>
+
+    <div class="docs-note">
+        <strong>Warning</strong>
+
+        <p>
+            Writing the ISO will erase the contents of the selected USB
+            drive. Back up anything important before continuing.
+        </p>
+    </div>
+
+    <h2>Verify the ISO</h2>
+
+    <p>
+        Each Octlitch release provides a SHA256 checksum on the download
+        page.
+    </p>
+
+    <p>
+        On Linux, verify the ISO with:
+    </p>
+
+    <pre><code>sha256sum Octlitch-*.iso</code></pre>
+
+    <p>
+        Compare the result with the checksum published on the Octlitch
+        download page.
+    </p>
+
+    <h2>Write the ISO</h2>
+
+    <p>
+        Use an image-writing utility that writes the ISO directly to the
+        USB device like Balena Etcher, Ventoy or Rufus if you are on Windows.
+    </p>
+
+    <p>
+        Do not extract the ISO contents onto the USB drive as ordinary
+        files.
+    </p>
+
+    <h3>Using Fedora Media Writer</h3>
+
+    <p>
+        Select the option for a custom ISO image, choose the Octlitch ISO,
+        select the correct USB drive and begin writing.
+    </p>
+
+    <h3>Using the command line</h3>
+
+    <p>
+        Advanced Linux users can write the image directly with
+        <code>dd</code>.
+    </p>
+
+    <div class="docs-note">
+        <strong>Check the device carefully</strong>
+
+        <p>
+            The following command overwrites the selected device. Replace
+            <code>/dev/sdX</code> with the USB device itself, not a
+            partition such as <code>/dev/sdX1</code>.
+        </p>
+    </div>
+
+    <pre><code>sudo dd if=Octlitch-1.0-Alpha-1.iso of=/dev/sdX bs=4M status=progress oflag=sync</code></pre>
+
+    <h2>Boot from the USB</h2>
+
+    <p>
+        Restart the computer and open its firmware boot menu. Select the
+        USB drive and Octlitch should display its boot menu.
+    </p>
+
+    <div class="docs-next">
+        <a href="/documentation/installation/">
+            Next: Installing Octlitch →
+        </a>
+    </div>
+</DocsLayout>

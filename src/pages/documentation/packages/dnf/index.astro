@@ -1,0 +1,122 @@
+---
+import DocsLayout from "../../../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="DNF package management">
+    <h1>DNF package management</h1>
+
+    <p class="docs-lead">
+        Octlitch uses DNF to manage the operating system and RPM packages.
+    </p>
+
+    <h2>System packages</h2>
+
+    <p>
+        Use DNF for system components, development tools, command-line
+        software, drivers and packages provided by the Fedora repositories.
+    </p>
+
+    <div class="docs-note">
+        <strong>DNF and Discover serve different purposes</strong>
+
+        <p>
+            Octlitch uses DNF for system packages. KDE Discover is intended
+            primarily for desktop applications installed through Flatpak.
+        </p>
+    </div>
+
+    <h2>Update the system</h2>
+
+    <p>
+        Refresh repository metadata and install available updates:
+    </p>
+
+    <pre><code>sudo dnf upgrade --refresh</code></pre>
+
+    <p>
+        It is a good idea to update regularly, especially for security
+        fixes and kernel updates.
+    </p>
+
+    <h2>Search for a package</h2>
+
+    <pre><code>dnf search package-name</code></pre>
+
+    <p>
+        For example:
+    </p>
+
+    <pre><code>dnf search git</code></pre>
+
+    <h2>Install a package</h2>
+
+    <pre><code>sudo dnf install package-name</code></pre>
+
+    <p>
+        Example:
+    </p>
+
+    <pre><code>sudo dnf install git</code></pre>
+
+    <h2>Remove a package</h2>
+
+    <pre><code>sudo dnf remove package-name</code></pre>
+
+    <p>
+        DNF will show the packages that will be removed before asking
+        for confirmation.
+    </p>
+
+    <h2>Package information</h2>
+
+    <p>
+        Display information about a package:
+    </p>
+
+    <pre><code>dnf info package-name</code></pre>
+
+    <h2>List installed packages</h2>
+
+    <pre><code>dnf list --installed</code></pre>
+
+    <p>
+        You can also check a specific installed RPM with:
+    </p>
+
+    <pre><code>rpm -q package-name</code></pre>
+
+    <h2>Repository information</h2>
+
+    <p>
+        Show enabled software repositories:
+    </p>
+
+    <pre><code>dnf repolist</code></pre>
+
+    <p>
+        Octlitch uses Fedora repositories for the base operating system.
+        Additional repositories may be configured for specific software.
+    </p>
+
+    <h2>Clean cached metadata</h2>
+
+    <p>
+        DNF normally manages its own cache automatically. If you need to
+        clear downloaded repository metadata:
+    </p>
+
+    <pre><code>sudo dnf clean all</code></pre>
+
+    <h2>Rebooting after updates</h2>
+
+    <p>
+        A reboot is recommended after updates to important components such
+        as the kernel, graphics stack or system libraries.
+    </p>
+
+    <div class="docs-next">
+        <a href="/documentation/packages/flatpak/">
+            Next: Discover and Flatpak →
+        </a>
+    </div>
+</DocsLayout>

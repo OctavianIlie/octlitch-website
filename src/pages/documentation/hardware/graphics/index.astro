@@ -1,0 +1,154 @@
+---
+import DocsLayout from "../../../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="AMD and Intel graphics">
+    <h1>AMD and Intel graphics</h1>
+
+    <p class="docs-lead">
+        AMD and Intel graphics support is included directly in the Linux
+        kernel and Mesa graphics stack used by Octlitch.
+    </p>
+
+    <h2>Drivers are already installed</h2>
+
+    <p>
+        In normal installations, no separate graphics driver download is
+        required for supported AMD or Intel GPUs.
+    </p>
+
+    <p>
+        Graphics support is provided through the kernel, Mesa and other
+        components supplied by Fedora.
+    </p>
+
+    <div class="docs-note">
+        <strong>Keep Octlitch updated</strong>
+
+        <p>
+            Kernel and Mesa updates can provide performance improvements,
+            hardware support and graphics fixes.
+        </p>
+    </div>
+
+    <h2>Update the graphics stack</h2>
+
+    <p>
+        Graphics updates arrive through the normal system update process:
+    </p>
+
+    <pre><code>sudo dnf upgrade --refresh</code></pre>
+
+    <p>
+        Restart after major kernel or graphics-stack updates:
+    </p>
+
+    <pre><code>sudo reboot</code></pre>
+
+    <h2>Identify your graphics hardware</h2>
+
+    <p>
+        Display the graphics adapters detected by the system:
+    </p>
+
+    <pre><code>lspci | grep -Ei 'VGA|3D|Display'</code></pre>
+
+    <p>
+        To also show the active kernel driver:
+    </p>
+
+    <pre><code>lspci -k | grep -EA3 'VGA|3D|Display'</code></pre>
+
+    <h2>AMD graphics</h2>
+
+    <p>
+        Modern AMD GPUs normally use the <code>amdgpu</code> kernel driver.
+    </p>
+
+    <p>
+        Check whether it is loaded:
+    </p>
+
+    <pre><code>lsmod | grep amdgpu</code></pre>
+
+    <p>
+        You can also inspect the device and driver association with:
+    </p>
+
+    <pre><code>lspci -k | grep -EA3 'VGA|3D|Display'</code></pre>
+
+    <h2>Intel graphics</h2>
+
+    <p>
+        Intel integrated graphics use drivers included with the kernel and
+        Mesa stack.
+    </p>
+
+    <p>
+        The exact kernel driver depends on the Intel graphics generation
+        and the Fedora kernel in use.
+    </p>
+
+    <p>
+        Check the active driver with:
+    </p>
+
+    <pre><code>lspci -k | grep -EA3 'VGA|3D|Display'</code></pre>
+
+    <h2>Firmware</h2>
+
+    <p>
+        Some graphics hardware requires firmware files provided by the
+        Fedora firmware packages.
+    </p>
+
+    <p>
+        Keep the system updated so current firmware is installed:
+    </p>
+
+    <pre><code>sudo dnf upgrade --refresh</code></pre>
+
+    <h2>Wayland</h2>
+
+    <p>
+        Octlitch uses KDE Plasma with Wayland as its modern display
+        environment.
+    </p>
+
+    <p>
+        Supported AMD and Intel systems normally work with Wayland using
+        the drivers already included in the system.
+    </p>
+
+    <h2>Troubleshooting graphics problems</h2>
+
+    <p>
+        First identify the GPU and active driver:
+    </p>
+
+    <pre><code>lspci -k | grep -EA3 'VGA|3D|Display'</code></pre>
+
+    <p>
+        Then check kernel messages for graphics-related errors:
+    </p>
+
+    <pre><code>journalctl -b -k | grep -Ei 'drm|amdgpu|i915|xe|gpu'</code></pre>
+
+    <p>
+        Information about the current session can also be useful:
+    </p>
+
+    <pre><code>echo $XDG_SESSION_TYPE</code></pre>
+
+    <p>
+        On the standard Octlitch desktop this will normally report:
+    </p>
+
+    <pre><code>wayland</code></pre>
+
+    <div class="docs-next">
+        <a href="/documentation/gaming/steam/">
+            Next: Steam →
+        </a>
+    </div>
+</DocsLayout>

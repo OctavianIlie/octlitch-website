@@ -1,0 +1,58 @@
+---
+import DocsLayout from "../../../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="System requirements">
+    <h1>System requirements</h1>
+
+    <p class="docs-lead">
+        Octlitch is designed for modern 64-bit PCs.
+    </p>
+
+    <h2>Architecture</h2>
+
+    <p>
+        Octlitch currently supports the x86_64 architecture used by
+        modern Intel and AMD processors.
+    </p>
+
+    <h2>Recommended hardware</h2>
+
+    <ul>
+        <li>64-bit Intel or AMD processor</li>
+        <li>4 GB of RAM or more</li>
+        <li>25 GB of free storage or more</li>
+        <li>UEFI-capable system</li>
+        <li>USB port for installation media</li>
+        <li>Internet connection for updates and additional applications</li>
+    </ul>
+
+    <div class="docs-note">
+        <strong>Virtual machines</strong>
+
+        <p>
+            Octlitch can also be tested in virtual machines such as KVM/QEMU
+            and VirtualBox. Allocate at least 4 GB of RAM and enough storage
+            for the installation.
+        </p>
+    </div>
+
+    <h2>Graphics</h2>
+
+    <p>
+        Intel and AMD graphics are supported using the drivers included
+        with the Fedora base.
+    </p>
+
+    <p>
+        NVIDIA systems can use the open drivers available in the live
+        environment. Proprietary NVIDIA drivers can be installed after
+        Octlitch is installed.
+    </p>
+
+    <div class="docs-next">
+        <a href="/documentation/installation/usb/">
+            Next: Creating installation media →
+        </a>
+    </div>
+</DocsLayout>

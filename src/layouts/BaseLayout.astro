@@ -1,0 +1,101 @@
+---
+import "../styles/global.css";
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const {
+    title,
+    description = "Octlitch Linux — a fast, focused KDE Plasma Linux distribution."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    />
+
+    <meta
+        name="description"
+        content={description}
+    />
+
+    <meta
+        name="theme-color"
+        content="#07110f"
+    />
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="/favicon.png"
+    />
+
+    <meta
+        property="og:title"
+        content={title}
+    />
+
+    <meta
+        property="og:description"
+        content={description}
+    />
+
+    <meta
+        property="og:type"
+        content="website"
+    />
+
+    <meta
+        property="og:image"
+        content="/images/octlitch-logo.png"
+    />
+
+    <title>{title}</title>
+</head>
+    <body>
+        <header class="site-header">
+            <div class="container nav">
+                <a href="/" class="brand">
+                    <img
+                        src="/images/octlitch-logo.png"
+                        alt="Octlitch logo"
+                    />
+                    <span>Octlitch</span>
+                </a>
+
+                <nav>
+                    <a href="/">Home</a>
+                    <a href="/news/">News</a>
+                    <a href="/download/">Download</a>
+                    <a href="/documentation/">Documentation</a>
+                    <a
+                        href="https://github.com/OctavianIlie/octlitch"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        GitHub
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <slot />
+        </main>
+
+        <footer>
+            <div class="container footer-inner">
+                <span>Octlitch Linux</span>
+                <span>Built on Fedora with KDE Plasma.</span>
+            </div>
+        </footer>
+    </body>
+</html>

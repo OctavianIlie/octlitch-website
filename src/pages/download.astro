@@ -1,0 +1,156 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const release = {
+    name: "Octlitch 1.0 Alpha 1",
+    arch: "x86_64",
+    size: "Coming soon",
+    downloadUrl: "",
+};
+---
+
+<BaseLayout
+    title="Download — Octlitch Linux"
+    description="Download Octlitch Linux and verify your installation media."
+>
+    <section class="download-page">
+        <div class="container">
+            <div class="download-heading">
+                <div>
+                    <span class="section-label">Download</span>
+                    <h1>Get Octlitch.</h1>
+                </div>
+
+                <p>
+                    Boot Octlitch from a USB drive, try the complete desktop
+                    without installing, and install it when you're ready.
+                </p>
+            </div>
+
+            <div class="release">
+                <div class="release-identity">
+                    <img
+                        src="/images/octlitch-logo.png"
+                        alt="Octlitch logo"
+                    />
+
+                    <div>
+                        <span class="release-label">
+                            Latest development release
+                        </span>
+
+                        <h2>{release.name}</h2>
+
+                        <p>
+                            Fedora-based. KDE Plasma. Built for 64-bit PCs.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="release-download">
+                    <div class="release-row">
+                        <div>
+                            <strong>Intel / AMD 64-bit</strong>
+                            <span>{release.arch}</span>
+                        </div>
+
+                        {
+                            release.downloadUrl ? (
+                                <a
+                                    class="button primary"
+                                    href={release.downloadUrl}
+                                >
+                                    Download ISO
+                                </a>
+                            ) : (
+                                <span class="button disabled">
+                                    ISO coming soon
+                                </span>
+                            )
+                        }
+                    </div>
+
+                    <div class="release-meta">
+                        <span>{release.size}</span>
+                        <span>Live ISO</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-columns">
+                <section>
+                    <h2>Before you install</h2>
+
+                    <div class="simple-list">
+                        <div>
+                            <strong>Back up your data</strong>
+                            <p>
+                                Keep anything important somewhere safe before
+                                changing partitions or installing an operating
+                                system.
+                            </p>
+                        </div>
+
+                        <div>
+                            <strong>Use an 8 GB or larger USB drive</strong>
+                            <p>
+                                Write the ISO directly to a USB drive and boot
+                                your computer from it.
+                            </p>
+                        </div>
+
+                        <div>
+                            <strong>Try the live desktop first</strong>
+                            <p>
+                                Check networking, graphics, audio and your
+                                peripherals before installing.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Verify the download</h2>
+
+                    <p class="download-copy">
+                        Release downloads will include a SHA256 checksum so
+                        you can verify that the ISO arrived intact.
+                    </p>
+
+                    <div class="checksum-box">
+                        <span>SHA256</span>
+                        <code>Published with the release</code>
+                    </div>
+
+                    <a
+                        class="text-link"
+                        href="/documentation/installation/"
+                    >
+                        Read the installation guide →
+                    </a>
+                </section>
+            </div>
+
+            <div class="release-notice">
+                <div>
+                    <strong>Alpha software</strong>
+
+                    <p>
+                        Octlitch is still under active development. Early
+                        releases are intended for testing and feedback, not
+                        critical production systems.
+                    </p>
+                </div>
+
+                <a
+                    class="button"
+                    href="https://github.com/OctavianIlie/octlitch/issues"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Report an issue
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

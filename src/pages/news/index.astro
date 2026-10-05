@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { newsPosts } from "../../data/news";
+---
+
+<BaseLayout
+    title="News — Octlitch Linux"
+    description="Development updates and release news from the Octlitch Linux project."
+>
+    <section class="news-page">
+        <div class="container">
+            <header class="news-heading">
+                <span class="section-label">Project updates</span>
+
+                <h1>News</h1>
+
+                <p>
+                    Development updates, release announcements and other
+                    news from the Octlitch project.
+                </p>
+            </header>
+
+            <div class="news-list">
+                {
+                    newsPosts.map((post) => (
+                        <article class="news-item">
+                            <div class="news-date">
+                                {post.date}
+                            </div>
+
+                            <div class="news-item-content">
+                                <h2>
+                                    <a href={`/news/${post.slug}/`}>
+                                        {post.title}
+                                    </a>
+                                </h2>
+
+                                <p>{post.summary}</p>
+
+                                <a
+                                    class="news-read"
+                                    href={`/news/${post.slug}/`}
+                                >
+                                    Read update →
+                                </a>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</BaseLayout>

@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { newsPosts } from "../../data/news";
+
+export function getStaticPaths() {
+    return newsPosts.map((post) => ({
+        params: {
+            slug: post.slug,
+        },
+        props: {
+            post,
+        },
+    }));
+}
+
+const { post } = Astro.props;
+---
+
+<BaseLayout
+    title={`${post.title} — Octlitch`}
+    description={post.summary}
+>
+    <article class="news-article">
+        <div class="news-article-inner">
+            <a class="news-back" href="/news/">
+                ← News
+            </a>
+
+            <div class="news-article-date">
+                {post.date}
+            </div>
+
+            <h1>{post.title}</h1>
+
+            <p class="news-article-lead">
+                {post.summary}
+            </p>
+
+            <div class="news-article-body">
+                {
+                    post.content.map((section) => (
+                        <section>
+                            <h2>{section.heading}</h2>
+
+                            {
+                                section.paragraphs.map((paragraph) => (
+                                    <p>{paragraph}</p>
+                                ))
+                            }
+                        </section>
+                    ))
+                }
+            </div>
+
+            <div class="news-article-footer">
+                <a href="/news/">
+                    ← Back to all news
+                </a>
+            </div>
+        </div>
+    </article>
+</BaseLayout>

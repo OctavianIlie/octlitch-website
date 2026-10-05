@@ -1,17 +1,209 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+    title="Octlitch Linux"
+    description="Octlitch is a focused Fedora-based Linux distribution built around KDE Plasma."
+>
+    <section class="hero">
+        <div class="container">
+            <img
+                class="hero-logo"
+                src="/images/octlitch-logo.png"
+                alt="Octlitch"
+            />
+
+            <h1>
+                <span>Octlitch</span> Linux
+            </h1>
+
+            <p>
+                A focused Fedora-based Linux distribution built around
+                KDE Plasma, designed for speed, simplicity and a polished
+                desktop from the first boot.
+            </p>
+
+            <div class="actions">
+                <a class="button primary" href="/download/">
+                    Download Octlitch
+                </a>
+
+                <a class="button" href="/documentation/">
+                    Documentation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">
+                Built for the desktop.
+            </h2>
+
+            <p class="section-intro">
+                KDE Plasma, carefully configured defaults and a clean
+                Fedora foundation.
+            </p>
+
+            <div class="desktop-preview">
+                <img
+                    src="/images/octlitch-desktop.jpeg"
+                    alt="Octlitch KDE Plasma desktop"
+                />
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">
+                Why Octlitch?
+            </h2>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <h3>Fast by default</h3>
+
+                    <p>
+                        A trimmed Fedora base with unnecessary software
+                        removed and a focused KDE Plasma environment.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <h3>Ready to use</h3>
+
+                    <p>
+                        LibreWolf, Discover, Flatpak and Flathub are ready
+                        for a practical desktop experience.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <h3>Your system</h3>
+
+                    <p>
+                        Fedora underneath, Octlitch on top. Standard Linux
+                        tools remain available without hiding the system
+                        from you.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">
+                Four looks. One desktop.
+            </h2>
+
+            <p class="section-intro">
+                Octlitch ships with four curated desktop themes.
+            </p>
+
+            <div class="theme-grid">
+                <article class="theme-card">
+                    <img
+                        src="/images/themes/valley.jpg"
+                        alt="Octlitch Valley theme"
+                    />
+
+                    <div>
+                        <h3>Valley</h3>
+                    </div>
+                </article>
+
+                <article class="theme-card">
+                    <img
+                        src="/images/themes/model.jpg"
+                        alt="Octlitch Model theme"
+                    />
+
+                    <div>
+                        <h3>Model</h3>
+                    </div>
+                </article>
+
+                <article class="theme-card">
+                    <img
+                        src="/images/themes/coast.jpg"
+                        alt="Octlitch Coast theme"
+                    />
+
+                    <div>
+                        <h3>Coast</h3>
+                    </div>
+                </article>
+
+                <article class="theme-card">
+                    <img
+                        src="/images/themes/mountain.jpg"
+                        alt="Octlitch Mountain theme"
+                    />
+
+                    <div>
+                        <h3>Mountain</h3>
+                    </div>
+                </article>
+            </div>
+	<p class="wallpaper-credit">
+	    Wallpapers sourced from the
+    		<a
+       			 href="https://github.com/orangci/walls-catppuccin-mocha"
+        		 target="_blank"
+        		 rel="noreferrer"
+    		> walls-catppuccin-mocha collection
+    		</a> maintained by orangci. Original artwork belongs to its respective creators.
+	</p>
+        </div>
+    </section>
+
+    <section class="section open-source-section">
+        <div class="container open-source-inner">
+            <div>
+                <h2 class="section-title">
+                    Octlitch is open source.
+                </h2>
+
+                <p class="section-intro">
+                    Everyone can customize the OS however they want.
+                    Explore the source, change it, rebuild it and make
+                    Octlitch your own.
+                </p>
+            </div>
+
+            <a
+                class="button"
+                href="https://github.com/OctavianIlie/octlitch"
+                target="_blank"
+                rel="noreferrer"
+            >
+                View on GitHub
+            </a>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="download-cta">
+            <h2>Try Octlitch.</h2>
+
+            <p>
+                Boot it live, explore the desktop, and install when
+                you're ready.
+            </p>
+
+            <div class="actions">
+                <a class="button primary" href="/download/">
+                    Download
+                </a>
+
+                <a class="button" href="/documentation/">
+                    Installation guide
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

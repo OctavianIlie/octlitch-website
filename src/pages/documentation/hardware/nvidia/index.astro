@@ -1,0 +1,177 @@
+---
+import DocsLayout from "../../../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="NVIDIA graphics">
+    <h1>NVIDIA graphics</h1>
+
+    <p class="docs-lead">
+        Octlitch does not include proprietary NVIDIA drivers in the
+        installation image. They can be installed after Octlitch is
+        installed.
+    </p>
+
+    <h2>Before installing</h2>
+
+    <p>
+        The Octlitch live environment and initial installation use the
+        graphics support available in the Fedora base.
+    </p>
+
+    <p>
+        After installation, users with supported NVIDIA hardware can choose
+        to install the proprietary NVIDIA driver.
+    </p>
+
+    <div class="docs-note">
+        <strong>Do not use NVIDIA's .run installer</strong>
+
+        <p>
+            Octlitch uses RPM packages so graphics drivers stay integrated
+            with the Fedora package manager and kernel update process.
+        </p>
+    </div>
+
+    <h2>Check your graphics hardware</h2>
+
+    <p>
+        Display the detected graphics adapters and their current kernel
+        drivers:
+    </p>
+
+    <pre><code>lspci -k | grep -EA3 'VGA|3D|Display'</code></pre>
+
+    <h2>Install the NVIDIA driver</h2>
+
+    <p>
+        Octlitch includes a post-install helper for installing NVIDIA
+        support:
+    </p>
+
+    <pre><code>sudo octlitch-install-nvidia</code></pre>
+
+    <p>
+        The helper configures the required third-party repositories,
+        installs the NVIDIA driver packages, builds the kernel module and
+        updates the initial RAM filesystem where required.
+    </p>
+
+    <p>
+        Follow the instructions shown in the terminal and allow the process
+        to finish before restarting the computer.
+    </p>
+
+    <h2>Restart the system</h2>
+
+    <p>
+        After the installation completes:
+    </p>
+
+    <pre><code>sudo reboot</code></pre>
+
+    <h2>Verify the driver</h2>
+
+    <p>
+        After restarting, check that the NVIDIA driver is available:
+    </p>
+
+    <pre><code>nvidia-smi</code></pre>
+
+    <p>
+        A working installation should display information about the NVIDIA
+        GPU and installed driver.
+    </p>
+
+    <p>
+        You can also check the active kernel driver with:
+    </p>
+
+    <pre><code>lspci -k | grep -EA3 'VGA|3D|Display'</code></pre>
+
+    <h2>Secure Boot</h2>
+
+    <p>
+        Secure Boot can prevent third-party kernel modules from loading
+        unless they are trusted by the system.
+    </p>
+
+    <p>
+        Check whether Secure Boot is enabled with:
+    </p>
+
+    <pre><code>mokutil --sb-state</code></pre>
+
+    <p>
+        If Secure Boot is enabled, the NVIDIA installation may require
+        additional module-signing or key-enrollment steps.
+    </p>
+
+    <div class="docs-note">
+        <strong>Read the installer output</strong>
+
+        <p>
+            The Octlitch NVIDIA helper explains the Secure Boot situation
+            when it detects that additional steps may be necessary.
+        </p>
+    </div>
+
+    <h2>Kernel updates</h2>
+
+    <p>
+        Octlitch uses the RPM Fusion akmod packaging method for the
+        proprietary NVIDIA module.
+    </p>
+
+    <p>
+        After a kernel update, the NVIDIA module may need a short period
+        to build for the new kernel before the system is restarted.
+    </p>
+
+    <p>
+        You can check the build state with:
+    </p>
+
+    <pre><code>sudo akmods --force</code></pre>
+
+    <h2>If the NVIDIA driver does not load</h2>
+
+    <p>
+        Start by checking the installed packages and loaded kernel modules:
+    </p>
+
+    <pre><code>rpm -qa | grep -i nvidia</code></pre>
+
+    <pre><code>lsmod | grep nvidia</code></pre>
+
+    <p>
+        Check kernel messages related to NVIDIA:
+    </p>
+
+    <pre><code>journalctl -b -k | grep -i nvidia</code></pre>
+
+    <p>
+        Also verify Secure Boot status:
+    </p>
+
+    <pre><code>mokutil --sb-state</code></pre>
+
+    <h2>Laptops with multiple GPUs</h2>
+
+    <p>
+        Some laptops contain both integrated graphics and a discrete NVIDIA
+        GPU. In these systems, applications may use different GPUs depending
+        on the hardware and driver configuration.
+    </p>
+
+    <p>
+        Both graphics devices can be inspected with:
+    </p>
+
+    <pre><code>lspci -k | grep -EA3 'VGA|3D|Display'</code></pre>
+
+    <div class="docs-next">
+        <a href="/documentation/hardware/graphics/">
+            Next: AMD and Intel graphics →
+        </a>
+    </div>
+</DocsLayout>
