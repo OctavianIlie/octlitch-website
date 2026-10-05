@@ -4,11 +4,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const release = {
     name: "Octlitch 1.0 Alpha 1",
     arch: "x86_64",
-    size: "Coming soon",
-    downloadUrl: "",
+    size: "3.41 GiB",
+
+    downloadUrl:
+        "https://downloads.octlitch.com/releases/1.0-alpha1/Octlitch-1.0-Alpha-1-x86_64.iso",
+
+    checksumUrl:
+        "https://downloads.octlitch.com/releases/1.0-alpha1/Octlitch-1.0-Alpha-1-x86_64.iso.sha256",
+
+    sha256:
+        "4814ec861ac222eac54c29a5b1837e15753f46481bc49ac6efe038d577eba74e",
 };
 ---
-
 <BaseLayout
     title="Download — Octlitch Linux"
     description="Download Octlitch Linux and verify your installation media."
@@ -117,11 +124,20 @@ const release = {
                         you can verify that the ISO arrived intact.
                     </p>
 
-                    <div class="checksum-box">
-                        <span>SHA256</span>
-                        <code>Published with the release</code>
-                    </div>
+			<div class="checksum-box">
+    			<span>SHA256</span>
 
+    			<code>{release.sha256}</code>
+			</div>
+
+			<a
+    				class="text-link"
+    				href={release.checksumUrl}
+    				target="_blank"
+    				rel="noreferrer"
+			>
+    				Download SHA256 file →
+			</a>
                     <a
                         class="text-link"
                         href="/documentation/installation/"
