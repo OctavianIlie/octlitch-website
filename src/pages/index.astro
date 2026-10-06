@@ -1,10 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-
-<BaseLayout
-    title="Octlitch Linux"
-    description="Octlitch is a focused Fedora-based Linux distribution built around KDE Plasma."
+<script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Octlitch Linux",
+        url: "https://octlitch.com/",
+        logo: "https://octlitch.com/images/octlitch-logo.png",
+        sameAs: [
+            "https://github.com/OctavianIlie/octlitch"
+        ]
+    })}
+/><BaseLayout
+    title="Octlitch Linux — Fedora-based KDE Plasma Distribution"
+    description="Octlitch Linux is a Fedora-based KDE Plasma distribution focused on a fast, clean and polished desktop experience."
 >
     <section class="hero">
         <div class="container">

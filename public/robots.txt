@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://octlitch.com/sitemap-index.xml
