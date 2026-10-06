@@ -13,12 +13,71 @@ const {
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
----
 
+const segments = currentPath
+    .split("/")
+    .filter(Boolean);
+
+const sectionNames: Record<string, string> = {
+    installation: "Installation",
+    packages: "Package management",
+    hardware: "Hardware",
+    gaming: "Gaming",
+    troubleshooting: "Troubleshooting",
+};
+
+const sectionSlug = segments[1];
+const sectionName = sectionNames[sectionSlug];
+
+const breadcrumbs = [
+    {
+        name: "Home",
+        url: "https://octlitch.com/",
+    },
+    {
+        name: "Documentation",
+        url: "https://octlitch.com/documentation/",
+    },
+];
+
+if (
+    sectionName &&
+    currentPath !== "/documentation/"
+) {
+    breadcrumbs.push({
+        name: sectionName,
+        url: `https://octlitch.com/documentation/${sectionSlug}/`,
+    });
+}
+
+if (
+    currentPath !== "/documentation/"
+) {
+    breadcrumbs.push({
+        name: title,
+        url: `https://octlitch.com${currentPath}`,
+    });
+}
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbs.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        item: item.url,
+    })),
+};
+---
 <BaseLayout
     title={`${title} — Octlitch Documentation`}
     description={description}
 >
+<script
+    type="application/ld+json"
+    set:html={JSON.stringify(breadcrumbSchema)}
+/>
     <div class="docs">
         <aside class="docs-sidebar">
             <div class="docs-sidebar-inner">
@@ -55,10 +114,36 @@ const currentPath = Astro.url.pathname;
             </div>
         </aside>
 
-        <article class="docs-content">
-            <div class="docs-article">
-                <slot />
-            </div>
-        </article>
+<article class="docs-content">
+    <div class="docs-article">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            {
+                breadcrumbs.map((item, index) => (
+                    <>
+                        {index > 0 && (
+                            <span class="breadcrumb-separator">/</span>
+                        )}
+
+                        {
+                            index === breadcrumbs.length - 1
+                                ? (
+                                    <span aria-current="page">
+                                        {item.name}
+                                    </span>
+                                )
+                                : (
+                                    <a href={item.url}>
+                                        {item.name}
+                                    </a>
+                                )
+                        }
+                    </>
+                ))
+            }
+        </nav>
+
+        <slot />
+    </div>
+</article>
     </div>
 </BaseLayout>

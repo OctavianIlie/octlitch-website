@@ -1093,3 +1093,34 @@ footer {
 
     border-top: 1px solid var(--border);
 }
+/* Documentation breadcrumbs */
+
+.breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 30px;
+
+    color: var(--muted);
+
+    font-size: 0.85rem;
+}
+
+.breadcrumbs a {
+    color: var(--muted);
+}
+
+.breadcrumbs a:hover {
+    color: var(--mint);
+    text-decoration: none;
+}
+
+.breadcrumbs span[aria-current="page"] {
+    color: var(--text);
+}
+
+.breadcrumb-separator {
+    color: var(--border);
+}
